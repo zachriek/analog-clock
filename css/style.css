@@ -23,116 +23,61 @@ body {
 }
 
 /* Navigasi */
-nav {
-    position: relative;
-    z-index: 100;
-    background-color: #000;
+.menu-container {
     color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 50px;
+    background-color: #000;
+    z-index: 5;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    text-align: center;
 }
 
-.logo h4 {
+.menu-toggle {
+    display: none;
+}
+
+.menu-container .logo h4 {
     font-size: 1.7rem;
     font-family: 'Montserrat-Bold';
 }
 
-nav ul {
+.menu-container ul {
     display: flex;
     width: 50%;
-    height: 50px;
     align-items: center;
     justify-content: space-between;
     list-style: none;
 }
 
-nav ul li {
-    width: 100%;
-    height: 100%;
-}
-
-nav ul li a {
-    width: 100%;
-    height: 100%;
+.menu-container ul li a {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: inherit;
+    color: #fff;
     font-family: 'Montserrat-Medium';
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color .3s,
-                text-decoration .3s,
-                transform .3s;
+    background-color: #000;
+    border-radius: 5px;
+    padding: 5px 12px;
+    transition: background-color .3s,
+                color .3s;
 }
 
-nav ul li a:hover {
-    transform: scale(1.05);
-    text-decoration: underline;
-    color: #e6e6e6;
-}
-
-
-/* Hamburger Menu */
-.menu-toggle {
-    position: relative;
-    display: none;
-    flex-direction: column;
-    height: 20px;
-    justify-content: space-between;
-    z-index: 3;
-}
-
-.menu-toggle input {
-    position: absolute;
-    width: 42px;
-    height: 30px;
-    left: -7px;
-    top: -5px;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 2;
-}
-
-.menu-toggle span {
-    width: 28px;
-    height: 3px;
+.menu-container ul li a:hover {
     background-color: #fff;
-    display: block;
-    border-radius: 3px;
-    transition: all .5s;
-}
-
-
-/* Hamburger Animation */
-.menu-toggle span:nth-child(2) {
-    transform-origin: 0 0;
-}
-
-.menu-toggle span:nth-child(4) {
-    transform-origin: 0 100%;
-}
-
-.menu-toggle input:checked ~ span:nth-child(2) {
-    transform: rotate(45deg) translate(-1px, -1px);
-    background-color: #fff;
-}
-
-.menu-toggle input:checked ~ span:nth-child(4) {
-    transform: rotate(-45deg) translate(-1px, 0);
-    background-color: #fff;
-}
-
-.menu-toggle input:checked ~ span:nth-child(3) {
-    opacity: 0;
-    transform: scale(0);
+    color: #000;
 }
 
 /* Clock Style */
 .container-clock {
-    margin: 50px auto;
+    margin: 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -169,7 +114,7 @@ nav ul li a:hover {
     height: 15px;
     background: #000;
     border-radius: 50%;
-    z-index: 50;
+    z-index: 20;
 }
 
 .clock .hour,
@@ -247,7 +192,89 @@ nav ul li a:hover {
 
 /* Ukuran Mobile */
 @media screen and ( max-width: 576px ) {
-    nav ul {
+    /* Menu Utama */
+    .menu-container {
+        position: fixed;
+        display: flex;
+    }
+
+    /* Menu Toggle */
+    .menu-toggle {
+        display: block;
+    }
+
+    .toggler {
+        position: absolute;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        z-index: 3;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .hamburger {
+        position: absolute;
+        top: 0;
+        width: 50px;
+        height: 50px;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #000;
+    }
+
+    .hamburger > div {
+        position: absolute;
+        width: 60%;
+        height: 3px;
+        border-radius: 1.5px;
+        background-color: #fff;
+        transition: .4s;
+    }
+
+    .hamburger > div:before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1.5px;
+        background-color: #fff;
+        transition: .4s;
+    }
+
+    .hamburger > div:after {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        border-radius: 1.5px;
+        background-color: #fff;
+        transition: .4s;
+    }
+
+    .toggler:checked + .hamburger > div {
+        transform: rotate(135deg);
+    }
+
+    .toggler:checked:hover + .hamburger > div {
+        transform: rotate(225deg);
+    }
+
+    .toggler:checked + .hamburger > div:before,
+    .toggler:checked + .hamburger > div:after {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    /* Navigasi */
+    .menu-container ul {
         position: absolute;
         width: 100%;
         top: 0;
@@ -258,18 +285,17 @@ nav ul li a:hover {
         justify-content: space-evenly;
         z-index: 1;
         background-color: #000;
-        transform: translateY(-100%);
+        transform: translateX(-100%);
+        opacity: 0;
         transition: all 1s;
     }
 
-    .menu-toggle {
-        display: flex;
+    .menu-container ul.slide {
+        opacity: 1;
+        transform: translateX(0);
     }
 
-    nav ul.slide {
-        transform: translateY(0);
-    }
-
+    /* Clock */
     .container-clock .heading h1 {
         font-size: 2.2rem;
     }
