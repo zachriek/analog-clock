@@ -16,17 +16,9 @@ setInterval(() => {
 
 });
 
-$(window).scroll(function() {
-	let wScroll = $(this).scrollTop();
-
-	$('nav').css({
-		'transform' : 'translate(0px, '+ wScroll * 2 +'%)'
-	});
-});
-
-const ulNav = document.querySelector('nav.nav ul');
-const menuToggle = document.querySelector('nav.nav .menu-toggle input');
+const menuUL = document.querySelector('nav.menu-container ul');
+const menuToggle = document.querySelector('nav.menu-container .menu-toggle .toggler');
 
 menuToggle.addEventListener('click', function() {
-	ulNav.classList.toggle('slide');
+	menuUL.classList.toggle('slide');
 });
