@@ -158,13 +158,13 @@ body {
     }
 
     .mn:before {
-        width: 4px;
+        width: 3px;
         top: 10px;
         height: 95px;
     }
 
     .sc:before {
-        width: 2px;
+        width: 1.5px;
         top: 10px;
         height: 130px;
     }
