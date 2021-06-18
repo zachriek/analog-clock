@@ -90,6 +90,7 @@ body {
     justify-content: center;
     position: absolute;
     border-radius: 50%;
+    transition: transform .05s cubic-bezier(0.1, 2.7, 0.58, 1);
 }
 
 .hr:before {
@@ -127,15 +128,44 @@ body {
 /* Responsive */
 
 /* Ukuran Tablet */
-@media screen and ( max-width: 768px ) {
+@media ( max-width: 768px ) {
     .container-clock .heading h1 {
         font-size: 2.5rem;
     }
 }
 
 /* Ukuran Mobile */
-@media screen and ( max-width: 576px ) {
+@media ( max-width: 576px ) {
     .container-clock .heading h1 {
         font-size: 2.2rem;
+    }
+}
+
+@media ( max-width: 500px ) {
+    .container-clock .heading h1 {
+        font-size: 1.8rem;
+    }
+
+    .clock {
+        width: 250px;
+        height: 250px;
+    }
+
+    .hr:before {
+        width: 6px;
+        height: 55px;
+        top: 20px;
+    }
+
+    .mn:before {
+        width: 4px;
+        top: 10px;
+        height: 95px;
+    }
+
+    .sc:before {
+        width: 2px;
+        top: 10px;
+        height: 130px;
     }
 }
